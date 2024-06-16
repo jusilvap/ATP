@@ -1,0 +1,740 @@
+1 
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaração e inicialização do vetor N com 20 elementos
+        double[] N = new double[20];
+        
+        // Leitura dos elementos para o vetor N
+        for (int i = 0; i < 20; i++)
+        {
+            Console.Write($"Digite o {i+1}º elemento do vetor N: ");
+            N[i] = Convert.ToDouble(Console.ReadLine());
+        }
+        
+        // Inicializa o menor elemento como o primeiro do vetor e a posição como 0
+        double menor = N[0];
+        int posicao = 0;
+        
+        // Encontra o menor elemento e sua posição
+        for (int i = 1; i < 20; i++)
+        {
+            if (N[i] < menor)
+            {
+                menor = N[i];
+                posicao = i;
+            }
+        }
+        
+        // Exibe o resultado
+        Console.WriteLine($"O menor elemento de N é: {menor} e sua posição dentro do vetor é: {posicao}");
+    }
+}
+
+
+2 
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaração do vetor de notas com 10 elementos
+        double[] notas = new double[10];
+        
+        // Chamando o procedimento para preencher o vetor de notas
+        PreencherNotas(notas);
+        
+        // Chamando o procedimento para calcular média e contar notas acima da média
+        CalcularMediaEContarAcimaDaMedia(notas);
+    }
+    
+    // Procedimento para preencher o vetor de notas
+    static void PreencherNotas(double[] vetor)
+    {
+        Console.WriteLine("Digite as notas dos 10 alunos:");
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write($"Nota do aluno {i+1}: ");
+            vetor[i] = Convert.ToDouble(Console.ReadLine());
+        }
+    }
+    
+    // Procedimento para calcular média e contar notas acima da média
+    static void CalcularMediaEContarAcimaDaMedia(double[] vetor)
+    {
+        double soma = 0;
+        int countAcimaDaMedia = 0;
+        
+        // Calculando a soma das notas
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            soma += vetor[i];
+        }
+        
+        // Calculando a média
+        double media = soma / vetor.Length;
+        
+        // Contando quantos alunos têm nota acima da média
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            if (vetor[i] > media)
+            {
+                countAcimaDaMedia++;
+            }
+        }
+        
+        // Exibindo a média e o número de alunos com nota acima da média
+        Console.WriteLine($"A média da turma é: {media.ToString("F2")}");
+        Console.WriteLine($"Número de alunos com nota acima da média: {countAcimaDaMedia}");
+    }
+}
+
+
+3
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaração do vetor X com 10 elementos
+        int[] X = new int[10];
+
+        // Preenchendo o vetor X
+        PreencherVetor(X);
+
+        // Chamando a função para obter o vetor de valores negativos
+        int[] vetorNegativos = CopiarNegativos(X);
+
+        // Exibindo o conteúdo do vetor X
+        Console.WriteLine("Vetor X:");
+        ExibirVetor(X);
+
+        // Exibindo o conteúdo do vetor de valores negativos
+        Console.WriteLine("\nVetor de valores negativos:");
+        ExibirVetor(vetorNegativos);
+    }
+
+    // Procedimento para preencher um vetor com valores digitados pelo usuário
+    static void PreencherVetor(int[] vetor)
+    {
+        Console.WriteLine("Digite 10 números inteiros para preencher o vetor:");
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write($"Digite o {i+1}º número: ");
+            vetor[i] = Convert.ToInt32(Console.ReadLine());
+        }
+    }
+
+    // Função para copiar valores negativos de um vetor para outro
+    static int[] CopiarNegativos(int[] vetor)
+    {
+        // Contagem de valores negativos para definir o tamanho do novo vetor
+        int countNegativos = 0;
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            if (vetor[i] < 0)
+            {
+                countNegativos++;
+            }
+        }
+
+        // Criação do novo vetor para armazenar os valores negativos
+        int[] vetorNegativos = new int[countNegativos];
+        int index = 0;
+
+        // Copiando os valores negativos para o novo vetor
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            if (vetor[i] < 0)
+            {
+                vetorNegativos[index] = vetor[i];
+                index++;
+            }
+        }
+
+        return vetorNegativos;
+    }
+
+    // Procedimento para exibir o conteúdo de um vetor
+    static void ExibirVetor(int[] vetor)
+    {
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write(vetor[i] + " ");
+        }
+        Console.WriteLine();  // Pula uma linha após exibir todos os elementos do vetor
+    }
+}
+
+
+4
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaração dos vetores X e Y com 10 elementos cada
+        int[] X = new int[10];
+        int[] Y = new int[10];
+
+        // Preenchendo os vetores X e Y
+        PreencherVetores(X, Y);
+
+        // Criando um vetor intercalado com o dobro do tamanho de X e Y (20 elementos)
+        int[] vetorIntercalado = IntercalarVetores(X, Y);
+
+        // Exibindo o conteúdo dos vetores X, Y e vetorIntercalado
+        Console.WriteLine("Vetor X:");
+        ExibirVetor(X);
+
+        Console.WriteLine("\nVetor Y:");
+        ExibirVetor(Y);
+
+        Console.WriteLine("\nVetor Intercalado:");
+        ExibirVetor(vetorIntercalado);
+    }
+
+    // Procedimento para preencher os vetores X e Y com valores digitados pelo usuário
+    static void PreencherVetores(int[] vetorX, int[] vetorY)
+    {
+        Console.WriteLine("Digite 10 números inteiros para preencher o vetor X:");
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            Console.Write($"Digite o {i + 1}º número: ");
+            vetorX[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.WriteLine("\nDigite mais 10 números inteiros para preencher o vetor Y:");
+        for (int i = 0; i < vetorY.Length; i++)
+        {
+            Console.Write($"Digite o {i + 1}º número: ");
+            vetorY[i] = Convert.ToInt32(Console.ReadLine());
+        }
+    }
+
+    // Função para intercalar os vetores X e Y em um novo vetor
+    static int[] IntercalarVetores(int[] vetorX, int[] vetorY)
+    {
+        // Criando um vetor com o dobro do tamanho de X e Y para armazenar os elementos intercalados
+        int[] vetorIntercalado = new int[vetorX.Length + vetorY.Length];
+
+        // Preenchendo o vetor intercalado com os elementos de X e Y intercalados
+        int index = 0;
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            vetorIntercalado[index] = vetorX[i];
+            index++;
+            vetorIntercalado[index] = vetorY[i];
+            index++;
+        }
+
+        return vetorIntercalado;
+    }
+
+    // Procedimento para exibir o conteúdo de um vetor
+    static void ExibirVetor(int[] vetor)
+    {
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write(vetor[i] + " ");
+        }
+        Console.WriteLine();  // Pula uma linha após exibir todos os elementos do vetor
+    }
+}
+
+
+5
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Sorteando 3 números aleatórios entre 10 e 50
+        int[] numerosSorteados = SortearNumeros();
+
+        // Lendo as tentativas do usuário até acertar um número sorteado
+        LerTentativas(numerosSorteados);
+    }
+
+    // Função para sortear 3 números aleatórios entre 10 e 50 e retornar em um vetor
+    static int[] SortearNumeros()
+    {
+        Random random = new Random();
+        int[] numerosSorteados = new int[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            numerosSorteados[i] = random.Next(10, 51); // Sorteia números entre 10 e 50 (incluindo 10 e excluindo 51)
+        }
+
+        return numerosSorteados;
+    }
+
+    // Procedimento para ler as tentativas do usuário até acertar um número sorteado
+    static void LerTentativas(int[] numerosSorteados)
+    {
+        Console.WriteLine("Tente adivinhar um dos números sorteados (entre 10 e 50).");
+
+        while (true)
+        {
+            Console.Write("Digite um número: ");
+            int tentativa = Convert.ToInt32(Console.ReadLine());
+
+            // Verifica se o número digitado está entre os números sorteados
+            foreach (int numero in numerosSorteados)
+            {
+                if (tentativa == numero)
+                {
+                    Console.WriteLine($"Parabéns! Você acertou o número {numero}!");
+                    return; // Encerra o procedimento
+                }
+            }
+
+            Console.WriteLine("Número incorreto. Tente novamente.");
+        }
+    }
+}
+
+
+6  
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Vetor para armazenar as temperaturas de cada dia de outubro
+        double[] temperaturas = new double[31];
+
+        // Leitura das temperaturas
+        for (int i = 0; i < 31; i++)
+        {
+            Console.Write($"Digite a temperatura do dia {i + 1} de outubro: ");
+            temperaturas[i] = Convert.ToDouble(Console.ReadLine());
+        }
+
+        // Cálculo da menor e maior temperatura
+        double menorTemperatura = temperaturas[0];
+        double maiorTemperatura = temperaturas[0];
+
+        for (int i = 1; i < 31; i++)
+        {
+            if (temperaturas[i] < menorTemperatura)
+            {
+                menorTemperatura = temperaturas[i];
+            }
+            if (temperaturas[i] > maiorTemperatura)
+            {
+                maiorTemperatura = temperaturas[i];
+            }
+        }
+
+        // Cálculo da temperatura média
+        double somaTemperaturas = 0;
+        foreach (double temperatura in temperaturas)
+        {
+            somaTemperaturas += temperatura;
+        }
+        double temperaturaMedia = somaTemperaturas / 31;
+
+        // Contagem de dias com temperatura inferior à média
+        int diasInferioresMedia = 0;
+        foreach (double temperatura in temperaturas)
+        {
+            if (temperatura < temperaturaMedia)
+            {
+                diasInferioresMedia++;
+            }
+        }
+
+        // Exibição dos resultados
+        Console.WriteLine($"\nMenor temperatura: {menorTemperatura}°C");
+        Console.WriteLine($"Maior temperatura: {maiorTemperatura}°C");
+        Console.WriteLine($"Temperatura média: {temperaturaMedia}°C");
+        Console.WriteLine($"Número de dias com temperatura inferior à média: {diasInferioresMedia}");
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+}
+
+
+7
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matriz = new int[5, 5];
+
+        // Preencher a matriz com valores fornecidos pelo usuário
+        PreencherMatriz(matriz);
+
+        // Calcular e exibir as somas solicitadas
+        Console.WriteLine($"Soma da linha 4: {SomaLinha(matriz, 4)}");
+        Console.WriteLine($"Soma da coluna 2: {SomaColuna(matriz, 2)}");
+        Console.WriteLine($"Soma da diagonal principal: {SomaDiagonalPrincipal(matriz)}");
+        Console.WriteLine($"Soma da diagonal secundária: {SomaDiagonalSecundaria(matriz)}");
+        Console.WriteLine($"Soma de todos os elementos da matriz: {SomaMatriz(matriz)}");
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher uma matriz 5x5 com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Digite os elementos da matriz 5x5:");
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Função para calcular a soma dos elementos de uma linha específica da matriz
+    static int SomaLinha(int[,] matriz, int linha)
+    {
+        int soma = 0;
+        for (int j = 0; j < 5; j++)
+        {
+            soma += matriz[linha, j];
+        }
+        return soma;
+    }
+
+    // Função para calcular a soma dos elementos de uma coluna específica da matriz
+    static int SomaColuna(int[,] matriz, int coluna)
+    {
+        int soma = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            soma += matriz[i, coluna];
+        }
+        return soma;
+    }
+
+    // Função para calcular a soma dos elementos da diagonal principal da matriz
+    static int SomaDiagonalPrincipal(int[,] matriz)
+    {
+        int soma = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            soma += matriz[i, i];
+        }
+        return soma;
+    }
+
+    // Função para calcular a soma dos elementos da diagonal secundária da matriz
+    static int SomaDiagonalSecundaria(int[,] matriz)
+    {
+        int soma = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            soma += matriz[i, 4 - i];
+        }
+        return soma;
+    }
+
+    // Função para calcular a soma de todos os elementos da matriz
+    static int SomaMatriz(int[,] matriz)
+    {
+        int soma = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                soma += matriz[i, j];
+            }
+        }
+        return soma;
+    }
+}
+
+
+8
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matriz = new int[4, 4];
+
+        // Preencher a matriz com valores fornecidos pelo usuário
+        PreencherMatriz(matriz);
+
+        // Exibir os elementos da diagonal principal
+        Console.WriteLine("Elementos da diagonal principal:");
+        ExibirDiagonalPrincipal(matriz);
+
+        // Calcular e exibir a soma dos elementos abaixo da diagonal principal
+        int somaAbaixoDiagonal = SomaElementosAbaixoDiagonal(matriz);
+        Console.WriteLine($"Soma dos elementos abaixo da diagonal principal: {somaAbaixoDiagonal}");
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher uma matriz 4x4 com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Digite os elementos da matriz 4x4:");
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Função para exibir os elementos da diagonal principal da matriz
+    static void ExibirDiagonalPrincipal(int[,] matriz)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Console.Write(matriz[i, i] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    // Função para calcular a soma dos elementos abaixo da diagonal principal da matriz
+    static int SomaElementosAbaixoDiagonal(int[,] matriz)
+    {
+        int soma = 0;
+        for (int i = 1; i < 4; i++) // Começa do índice 1 para abaixo da diagonal principal
+        {
+            for (int j = 0; j < i; j++)
+            {
+                soma += matriz[i, j];
+            }
+        }
+        return soma;
+    }
+}
+
+
+
+9
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] A = new int[4, 6];
+        int[,] B = new int[4, 6];
+
+        // Preencher as matrizes A e B com valores fornecidos pelo usuário
+        PreencherMatrizes(A, B);
+
+        // Calcular a matriz S (soma de A e B)
+        int[,] S = SomaMatrizes(A, B);
+
+        // Calcular a matriz D (diferença de A e B)
+        int[,] D = DiferencaMatrizes(A, B);
+
+        // Exibir matriz S (soma de A e B)
+        Console.WriteLine("Matriz S (Soma de A e B):");
+        ExibirMatriz(S);
+
+        // Exibir matriz D (diferença de A e B)
+        Console.WriteLine("\nMatriz D (Diferença A - B):");
+        ExibirMatriz(D);
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher as matrizes A e B com valores fornecidos pelo usuário
+    static void PreencherMatrizes(int[,] A, int[,] B)
+    {
+        Console.WriteLine("Preenchendo matriz A (4x6):");
+        PreencherMatriz(A);
+
+        Console.WriteLine("\nPreenchendo matriz B (4x6):");
+        PreencherMatriz(B);
+    }
+
+    // Procedimento para preencher uma matriz com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Função para calcular e retornar a matriz S (soma de A e B)
+    static int[,] SomaMatrizes(int[,] A, int[,] B)
+    {
+        int[,] S = new int[4, 6];
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                S[i, j] = A[i, j] + B[i, j];
+            }
+        }
+        return S;
+    }
+
+    // Função para calcular e retornar a matriz D (diferença de A e B)
+    static int[,] DiferencaMatrizes(int[,] A, int[,] B)
+    {
+        int[,] D = new int[4, 6];
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 6; j++)
+            {
+                D[i, j] = A[i, j] - B[i, j];
+            }
+        }
+        return D;
+    }
+
+    // Procedimento para exibir uma matriz na tela
+    static void ExibirMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < matriz.GetLength(0); i++)
+        {
+            for (int j = 0; j < matriz.GetLength(1); j++)
+            {
+                Console.Write(matriz[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+
+
+10
+
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] M = new int[10, 10];
+
+        // Preencher e exibir a matriz original
+        PreencherMatriz(M);
+        Console.WriteLine("Matriz original:");
+        ExibirMatriz(M);
+
+        // Trocar linha 2 com linha 8
+        TrocarLinhas(M, 2, 8);
+        Console.WriteLine("\nMatriz após troca da linha 2 com a linha 8:");
+        ExibirMatriz(M);
+
+        // Trocar coluna 4 com coluna 10
+        TrocarColunas(M, 4, 10);
+        Console.WriteLine("\nMatriz após troca da coluna 4 com a coluna 10:");
+        ExibirMatriz(M);
+
+        // Trocar diagonal principal com diagonal secundária
+        TrocarDiagonais(M);
+        Console.WriteLine("\nMatriz após troca da diagonal principal com a diagonal secundária:");
+        ExibirMatriz(M);
+
+        // Trocar linha 5 com coluna 10
+        TrocarLinhaComColuna(M, 5, 10);
+        Console.WriteLine("\nMatriz após troca da linha 5 com a coluna 10:");
+        ExibirMatriz(M);
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher uma matriz com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Preencha a matriz M(10,10):");
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Procedimento para exibir uma matriz na tela
+    static void ExibirMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    // Procedimento para trocar duas linhas da matriz
+    static void TrocarLinhas(int[,] matriz, int linha1, int linha2)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            int temp = matriz[linha1, j];
+            matriz[linha1, j] = matriz[linha2, j];
+            matriz[linha2, j] = temp;
+        }
+    }
+
+    // Procedimento para trocar duas colunas da matriz
+    static void TrocarColunas(int[,] matriz, int coluna1, int coluna2)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[i, coluna1];
+            matriz[i, coluna1] = matriz[i, coluna2];
+            matriz[i, coluna2] = temp;
+        }
+    }
+
+    // Procedimento para trocar a diagonal principal com a diagonal secundária da matriz
+    static void TrocarDiagonais(int[,] matriz)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[i, i];
+            matriz[i, i] = matriz[i, 9 - i];
+            matriz[i, 9 - i] = temp;
+        }
+    }
+
+    // Procedimento para trocar uma linha com uma coluna da matriz
+    static void TrocarLinhaComColuna(int[,] matriz, int linha, int coluna)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[linha, i];
+            matriz[linha, i] = matriz[i, coluna];
+            matriz[i, coluna] = temp;
+        }
+    }
+}
