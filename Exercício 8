@@ -1,0 +1,60 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] matriz = new int[4, 4];
+
+        // Preencher a matriz com valores fornecidos pelo usuário
+        PreencherMatriz(matriz);
+
+        // Exibir os elementos da diagonal principal
+        Console.WriteLine("Elementos da diagonal principal:");
+        ExibirDiagonalPrincipal(matriz);
+
+        // Calcular e exibir a soma dos elementos abaixo da diagonal principal
+        int somaAbaixoDiagonal = SomaElementosAbaixoDiagonal(matriz);
+        Console.WriteLine($"Soma dos elementos abaixo da diagonal principal: {somaAbaixoDiagonal}");
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher uma matriz 4x4 com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Digite os elementos da matriz 4x4:");
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Função para exibir os elementos da diagonal principal da matriz
+    static void ExibirDiagonalPrincipal(int[,] matriz)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            Console.Write(matriz[i, i] + " ");
+        }
+        Console.WriteLine();
+    }
+
+    // Função para calcular a soma dos elementos abaixo da diagonal principal da matriz
+    static int SomaElementosAbaixoDiagonal(int[,] matriz)
+    {
+        int soma = 0;
+        for (int i = 1; i < 4; i++) // Começa do índice 1 para abaixo da diagonal principal
+        {
+            for (int j = 0; j < i; j++)
+            {
+                soma += matriz[i, j];
+            }
+        }
+        return soma;
+    }
+}
