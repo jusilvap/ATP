@@ -1,0 +1,74 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Declaração dos vetores X e Y com 10 elementos cada
+        int[] X = new int[10];
+        int[] Y = new int[10];
+
+        // Preenchendo os vetores X e Y
+        PreencherVetores(X, Y);
+
+        // Criando um vetor intercalado com o dobro do tamanho de X e Y (20 elementos)
+        int[] vetorIntercalado = IntercalarVetores(X, Y);
+
+        // Exibindo o conteúdo dos vetores X, Y e vetorIntercalado
+        Console.WriteLine("Vetor X:");
+        ExibirVetor(X);
+
+        Console.WriteLine("\nVetor Y:");
+        ExibirVetor(Y);
+
+        Console.WriteLine("\nVetor Intercalado:");
+        ExibirVetor(vetorIntercalado);
+    }
+
+    // Procedimento para preencher os vetores X e Y com valores digitados pelo usuário
+    static void PreencherVetores(int[] vetorX, int[] vetorY)
+    {
+        Console.WriteLine("Digite 10 números inteiros para preencher o vetor X:");
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            Console.Write($"Digite o {i + 1}º número: ");
+            vetorX[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        Console.WriteLine("\nDigite mais 10 números inteiros para preencher o vetor Y:");
+        for (int i = 0; i < vetorY.Length; i++)
+        {
+            Console.Write($"Digite o {i + 1}º número: ");
+            vetorY[i] = Convert.ToInt32(Console.ReadLine());
+        }
+    }
+
+    // Função para intercalar os vetores X e Y em um novo vetor
+    static int[] IntercalarVetores(int[] vetorX, int[] vetorY)
+    {
+        // Criando um vetor com o dobro do tamanho de X e Y para armazenar os elementos intercalados
+        int[] vetorIntercalado = new int[vetorX.Length + vetorY.Length];
+
+        // Preenchendo o vetor intercalado com os elementos de X e Y intercalados
+        int index = 0;
+        for (int i = 0; i < vetorX.Length; i++)
+        {
+            vetorIntercalado[index] = vetorX[i];
+            index++;
+            vetorIntercalado[index] = vetorY[i];
+            index++;
+        }
+
+        return vetorIntercalado;
+    }
+
+    // Procedimento para exibir o conteúdo de um vetor
+    static void ExibirVetor(int[] vetor)
+    {
+        for (int i = 0; i < vetor.Length; i++)
+        {
+            Console.Write(vetor[i] + " ");
+        }
+        Console.WriteLine();  // Pula uma linha após exibir todos os elementos do vetor
+    }
+}
