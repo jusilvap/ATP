@@ -1,0 +1,107 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[,] M = new int[10, 10];
+
+        // Preencher e exibir a matriz original
+        PreencherMatriz(M);
+        Console.WriteLine("Matriz original:");
+        ExibirMatriz(M);
+
+        // Trocar linha 2 com linha 8
+        TrocarLinhas(M, 2, 8);
+        Console.WriteLine("\nMatriz após troca da linha 2 com a linha 8:");
+        ExibirMatriz(M);
+
+        // Trocar coluna 4 com coluna 10
+        TrocarColunas(M, 4, 10);
+        Console.WriteLine("\nMatriz após troca da coluna 4 com a coluna 10:");
+        ExibirMatriz(M);
+
+        // Trocar diagonal principal com diagonal secundária
+        TrocarDiagonais(M);
+        Console.WriteLine("\nMatriz após troca da diagonal principal com a diagonal secundária:");
+        ExibirMatriz(M);
+
+        // Trocar linha 5 com coluna 10
+        TrocarLinhaComColuna(M, 5, 10);
+        Console.WriteLine("\nMatriz após troca da linha 5 com a coluna 10:");
+        ExibirMatriz(M);
+
+        Console.ReadLine(); // Para manter a janela do console aberta ao final
+    }
+
+    // Procedimento para preencher uma matriz com valores fornecidos pelo usuário
+    static void PreencherMatriz(int[,] matriz)
+    {
+        Console.WriteLine("Preencha a matriz M(10,10):");
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                Console.Write($"Elemento [{i},{j}]: ");
+                matriz[i, j] = Convert.ToInt32(Console.ReadLine());
+            }
+        }
+    }
+
+    // Procedimento para exibir uma matriz na tela
+    static void ExibirMatriz(int[,] matriz)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            for (int j = 0; j < 10; j++)
+            {
+                Console.Write(matriz[i, j] + "\t");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    // Procedimento para trocar duas linhas da matriz
+    static void TrocarLinhas(int[,] matriz, int linha1, int linha2)
+    {
+        for (int j = 0; j < 10; j++)
+        {
+            int temp = matriz[linha1, j];
+            matriz[linha1, j] = matriz[linha2, j];
+            matriz[linha2, j] = temp;
+        }
+    }
+
+    // Procedimento para trocar duas colunas da matriz
+    static void TrocarColunas(int[,] matriz, int coluna1, int coluna2)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[i, coluna1];
+            matriz[i, coluna1] = matriz[i, coluna2];
+            matriz[i, coluna2] = temp;
+        }
+    }
+
+    // Procedimento para trocar a diagonal principal com a diagonal secundária da matriz
+    static void TrocarDiagonais(int[,] matriz)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[i, i];
+            matriz[i, i] = matriz[i, 9 - i];
+            matriz[i, 9 - i] = temp;
+        }
+    }
+
+    // Procedimento para trocar uma linha com uma coluna da matriz
+    static void TrocarLinhaComColuna(int[,] matriz, int linha, int coluna)
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            int temp = matriz[linha, i];
+            matriz[linha, i] = matriz[i, coluna];
+            matriz[i, coluna] = temp;
+        }
+    }
+}
